@@ -9,7 +9,7 @@ $doctors=array();
 $doctors=$admin->get_all_doctors($hos_id);
 ?>
 
-<table class="uk-table uk-table-nowrap table_check">
+<table id="tb_exportable" class="uk-table uk-table-nowrap table_check">
     <thead>
     <tr>
         <th class="uk-width-1-10 uk-text-center small_col"><input type="checkbox" data-md-icheck class="check_all"></th>

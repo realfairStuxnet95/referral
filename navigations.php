@@ -229,11 +229,11 @@ $user_type=$_SESSION['user_type'];
                                     $profile_image=$admin->get_profile_image($user_id);
                                     if($profile_image!="" && $profile_image!='null'){
                                         ?>
-                                        <img style="min-height: 35px;" class="md-user-image" src="<?php echo $profile_image; ?>" alt=""/>
+                                        <img style="min-height: 35px;" class="md-user-image" src="system_images/profiles/<?php echo $profile_image; ?>" alt=""/>
                                         <?php
                                     }else{
                                         ?>
-                                <img style="min-height: 35px;" class="md-user-image" src="assets/img/avatars/user.png" alt=""/>
+                                        <img style="min-height: 35px;" class="md-user-image" src="assets/img/avatars/user.png" alt=""/>
                                         <?php
                                     }
                                     ?>

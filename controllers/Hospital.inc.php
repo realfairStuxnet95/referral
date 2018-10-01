@@ -50,7 +50,21 @@ class Hospital extends Query{
 		$num=$this->rows($con,$query);
 		return $num;
 	}
-
+	public function checkHospitalId($id){
+		global $con;
+		settype($id, 'integer');
+		$num;
+		//query creation
+		$query="SELECT hospital_id FROM hospitals WHERE hospital_id=\"$id\"";
+		$num=$this->rows($con,$query);
+		$status=false;
+		if($num>0){
+			$status=true;
+		}else{
+			$status=false;
+		}
+		return $status;
+	}
 	//function to check hospital phone number
 	public function check_phone($phone){
 		global $con;
@@ -175,6 +189,13 @@ class Hospital extends Query{
 	//function to get Hospital User profiles
 	public function get_user_profile($user_id){
 
+	}
+	//function to set hospital logo
+	public function setHospitalLogo($hospital_id,$logo_url){
+		global $con;
+		$query="UPDATE hospitals SET profile_picture=\"$logo_url\" WHERE hospital_id=\"$hospital_id\"";
+		$status=$this->update($con,$query);
+		return $status;
 	}
 }
 //instantiate class of Hospital

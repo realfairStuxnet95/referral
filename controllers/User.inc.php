@@ -64,7 +64,33 @@ class User extends Query{
 		}
 		return $state;
 	}
-
+	//function to set profile image
+	public function setProfileImage($user_id,$profile_url){
+		global $con;
+		$query="UPDATE system_users SET user_profile=\"$profile_url\" WHERE user_id=\"$user_id\"";
+		$status=$this->update($con,$query);
+		return $status;
+	}
+	public function getProfileImage($user_id){
+		global $con;
+		$profile="";
+		$query="SELECT user_profile FROM system_users WHERE user_id=\"$user_id\"";
+		$num=$this->rows($con,$query);
+		if($num>0){
+			$result=array();
+			$result=$this->select($con,$query);
+			foreach ($result as $key => $value) {
+				if($value['user_profile']==="null"){
+					$profile="assets/img/avatars/user.png";
+				}else{
+				$profile='system_images/profiles/'.$value['user_profile'];	
+				}	
+			}
+		}else{
+			$profile="assets/img/avatars/user.png";
+		}
+		return $profile;
+	}
 	//function to return hashed password
 	public function hash_password($password){
 		$new_pass=md5($password);

@@ -2,7 +2,7 @@
     <div class="col-lg-12">
      <div class="uk-width-1-1">
     <button class="uk-button uk-button-primary uk-button-large" data-uk-modal="{target:'#modal_overflow'}">ADD NEW DOCTOR</button>
-    <button class="uk-button uk-button-danger uk-button-large">EXPORT PDF</button>
+    <button id="btn_export_doc" class="uk-button uk-button-danger uk-button-large">PRINT INFORMATIONS</button>
     <div id="modal_overflow" class="uk-modal">
         <div class="uk-modal-dialog">
             <button type="button" class="uk-modal-close uk-close"></button>

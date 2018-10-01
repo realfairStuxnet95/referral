@@ -56,7 +56,12 @@ require_once 'auth.php';
                             if($_SESSION['user_type']=="doctor"){
                                 $profile_image=$doctor->getProfile($_SESSION['user_id']);
                                 ?>
-                            <img id="profile" src="<?php echo $profile_image ?>" alt="user avatar"/>s
+                            <img id="profile" src="<?php echo $profile_image ?>" alt="user avatar"/>
+                                <?php
+                            }elseif($_SESSION['user_type']=="HospitalAdmin"){
+                                $profile_image=$user->getProfileImage($_SESSION['user_id']);
+                                ?>
+                                <img id="profile" src="<?php echo $profile_image ?>" alt="user avatar"/>
                                 <?php
                             }
                             ?>

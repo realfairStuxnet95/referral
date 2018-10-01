@@ -706,7 +706,6 @@ require 'auth.php';
 
         });
     </script>
+    <script src="assets/js/actions/index.js"></script>
 </body>
-
-<!-- Mirrored from altair_html.tzdthemes.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Feb 2018 11:13:35 GMT -->
 </html>

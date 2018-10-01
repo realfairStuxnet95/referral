@@ -4,6 +4,9 @@ $info=array();
 $hospital_id=$user->get_user_hospital_id($_SESSION['user_id']);
 $info=$admin->get_hospital_info($hospital_id);
 ?>
+<script type="text/javascript">
+    const current_hospital="<?php echo $hospital_id; ?>";
+</script>
 <div class="md-card">
     <div class="md-card-content">
         <h3 class="heading_a">Hospital Settings</h3>
@@ -14,14 +17,31 @@ $info=$admin->get_hospital_info($hospital_id);
             <div class="uk-width-medium-1-1">
                 <div class="uk-form-row">
                     <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-medium-1-2">
+                        <div class="uk-width-medium-1-3">
                             <label>Hospital name</label>
                             <input id="name" type="text" value="<?php echo $value['hospital_name']; ?>" class="md-input label-fixed" />
                         </div>
-                        <div class="uk-width-medium-1-2">
+                        <div class="uk-width-medium-1-3">
                             <label>Hospital Slogan</label>
                             <input id="title" type="text" value="<?php echo $value['slogan']; ?>" class="md-input label-fixed" />
                             <input type="hidden" id="action" value="<?php echo $value['hospital_id']; ?>" name="">
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <label>Hospital Logo</label>
+                            <div class="uk-form-file md-btn md-btn-primary">
+                                Select
+                                <input id="hospital_logo" type="file" name="file">
+                            </div>
+                            <?php 
+                            $logo=$value['profile_picture'];
+                            if($logo!=""){
+                                $image_url="system_images/hospitals/".$logo;
+                                ?>
+                                <img src="<?php echo $image_url; ?>" id="profile" style="width: 100px;height: auto;">
+                                <?php
+                            }
+                            ?>
+                            
                         </div>
                     </div>
                 </div>
