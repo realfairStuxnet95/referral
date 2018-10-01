@@ -1,0 +1,134 @@
+ErrorDocument 404 http://localhost/doctor/404.html
+# Turn Rewrite Engine On
+RewriteEngine on
+# Rewrite for login.php
+RewriteRule ^access$ access_system.php [NC,L]
+# Rewrite for home_system.php
+RewriteRule ^dashboard$ home_system.php [NC,L]
+# Rewrite for register_hospital.php
+RewriteRule ^register$ register_hospital.php [NC,L]
+
+#rewrite for register hospital
+RewriteRule ^save$ save_hospital_info.php [NC,L]
+
+#check hospital data
+RewriteRule ^check_name$ check/check_hospital_name.php [NC,L]
+RewriteRule ^check_phone$ check/check_hospital_phone.php [NC,L]
+RewriteRule ^check_email$ check/check_hospital_email.php [NC,L]
+
+#check user data
+RewriteRule ^check_user$ check/check_login_name.php [NC,L]
+RewriteRule ^validate_user$ validate/validate_user.php [NC,L]
+RewriteRule ^logout$ log_user_off.php [NC,L]
+#check finisha account settings
+RewriteRule ^finish$ finish_account_setting.php [NC,L]
+RewriteRule ^finish_account$ finish_account_data.php [NC,L]
+
+#hospital admin save data
+RewriteRule ^save_department$ views/hospital/add/save_department.php [NC,L]
+RewriteRule ^save_doctor$ views/hospital/add/save_doctor.php [NC,L]
+RewriteRule ^save_nurse$ views/hospital/add/save_nurse.php [NC,L] 
+RewriteRule ^save_rec$ views/hospital/add/save_receptionist.php [NC,L]
+
+#HOSPITAL ADMIN DASHBOARD
+RewriteRule ^admin_messages$ views/hospital/load/load_system_message.php [NC,L]
+#END OF HOSPITAL ADMIN DASHBOARD
+
+#HOSPITAL ADMIN DEPARTMENTS
+RewriteRule ^get_description$ views/hospital/add/get_department_description.php [NC,L]
+RewriteRule ^department_actions$ views/hospital/actions/deparment_actions.php [NC,L]
+#END OF HOSPITAL ADMIN DEPARTMENTS
+
+#HOSPITAL SETTINGS
+RewriteRule ^hospital_settings$ views/hospital/actions/hospital_settings.php [NC,L]
+
+#END OF HOSPITAL SETTINGS
+
+#REFERRAL URL
+RewriteRule ^get_incoming$ views/referrals/incoming_referrals.php [NC,L]
+RewriteRule ^incoming_referral_actions$ views/referrals/incoming_referrals_actions.php [NC,L]
+#END OF REFERRAL URLS
+
+#COUNTER REFERRAL URL
+RewriteRule ^get_counter_referral$ views/referrals/get_counter_referral.php [NC,L]
+#END
+#COUNTER REFERRAL SEARCH
+RewriteRule ^counter_search$ counter_referrals/counter_search.php [NC,L]
+#END OF COUNTER SEARCH
+#REFERRAL CHATS
+RewriteRule ^get_chats$ referral/chat/get_chat.php [NC,L]
+#END OF REFERRAL CHATS
+
+#SUPERADMINS
+RewriteRule ^nurse_receptionist$ views/super/loader/nurse_search.php [NC,L]
+RewriteRule ^hospital_search$ views/super/loader/hospital_search.php [NC,L]
+#END SUPERADMINS
+#doctor url
+RewriteRule ^add_on_ref$ ongoing_referral.php [NC,L]
+RewriteRule ^hospital_info$ referral/hospital_info.php [NC,L]
+RewriteRule ^step1$ referral/save_step1.php [NC,L]
+RewriteRule ^step2$ referral/save_step2.php [NC,L]
+RewriteRule ^step3$ referral/save_step3.php [NC,L]
+RewriteRule ^step4$ referral/save_step4.php [NC,L]
+
+#profile url
+RewriteRule ^profile$ user_profile.php [NC,L]
+RewriteRule ^update_hospital_admin$ update_hospital_admin.php [NC,L]
+RewriteRule ^upload_profile$ views/updates/upload_user_profile.php [NC,L]
+
+#viewing referral information
+RewriteRule ^view_referral$ view_referral_details.php
+
+#superadmin updates and removes
+RewriteRule ^remove_hospital$ views/super/delete_hospital.php [NC,L]
+RewriteRule ^update_hospital$ views/super/update_hospital.php [NC,L]
+RewriteRule ^update_doctor$ views/super/update_doctor.php [NC,L]
+
+#Superadmin search doctor
+RewriteRule ^search_doctor$ views/super/doctor_search.php [NC,L]
+
+#counter referrals
+RewriteRule ^save_counter_referral$ counter_referrals/save_counter_referral.php [NC,L]
+RewriteRule ^counter_referral$ send_counter_referral.php [NC,L]
+
+#save system
+RewriteRule ^save_system$ views/super/add/save_system_settings.php [NC,L]
+
+#Superadmin system blog
+RewriteRule ^save_blog$ views/super/add/save_blog.php [NC,L]
+RewriteRule ^update_blog$ views/super/add/update_blog.php [NC,L]
+
+#SuperAdmin hospital location
+RewriteRule ^save_location$ views/super/add/save_location.php [NC,L]
+
+
+#SuperAdmin hospital Category
+RewriteRule ^save_category$ views/super/add/save_category.php [NC,L]
+#SuperAdmin Transport Mode
+RewriteRule ^save_transport$ views/super/add/save_transport.php [NC,L]
+#SuperAdmin hospital Deparment
+RewriteRule ^system_department$ views/super/add/save_department.php [NC,L]
+
+
+#SuperAdmin System Announcement 
+RewriteRule ^save_announcement$ views/super/add/save_announcement.php [NC,L]
+#public system blog
+RewriteRule ^system_blog$ system_blog_list.php [NC,L]
+RewriteRule ^blog$ system_blog_details.php [NC,L]
+
+#Hospital admin actions
+RewriteRule ^delete_receptionist$ views/hospital/actions/delete_receptionist.php [NC,L]
+RewriteRule ^delete_nurse$ views/hospital/actions/delete_nurse.php [NC,L]
+RewriteRule ^delete_doctor$ views/hospital/actions/delete_doctor.php [NC,L]
+
+#PUBLIC VIEWS
+RewriteRule ^system_help$ page_help.php [NC,L]
+
+#SUPERADMIN ACTIONS
+RewriteRule ^hospital_actions$ views/super/actions/hospital_actions.php [NC,L]
+
+#HOSPITAL ADMIN DOCTOR ACTIONS
+RewriteRule ^doctor_actions$ views/hospital/actions/doctor_actions.php [NC,L]
+
+#DELETE REFERRAL
+RewriteRule ^remove_referral$ referral/delete_referral.php [NC,L]
