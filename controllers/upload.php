@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
 	$extension=strtolower(end($fileExt));
 
 	//array containing allowed extensions
-	$allowed=array('jpg','png','jpeg','gif','pdf');
+	$allowed=array('jpg','png','jpeg','gif','pdf','docx');
 	//check if our extension is in our allowed list
 	if(in_array($extension,$allowed)){
 		//check if there was no error while uploading file

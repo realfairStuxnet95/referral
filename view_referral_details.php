@@ -68,7 +68,7 @@ require 'auth.php';
                                 <input type="text" class="md-input inverted-colors" placeholder="Find In chat..." id="invoice-filtering"/>
                             </div>
                             <div class="md-list-outside-inner">
-                                <ul class="md-list md-list-outside invoices_list" id="invoices_list">
+                                <ul class="md-list md-list-outside invoices_list" id="invoices_list" style="background: #fff;">
                                     <li class="heading_list">Referral Comments.</li>
                                     <li style="display: none;">
                                         <a href="#" class="md-list-content" data-invoice-id="22">
@@ -85,7 +85,8 @@ require 'auth.php';
                                     </li>
                                     <div id="chat_output" style="padding:10px;" class="uk-width-medium-1-1">
                                     </div>
-                                    <div class="uk-input-group">
+                                    <hr>
+                                    <div class="uk-input-group" style="">
                                         <div class="md-input-wrapper">
                                             <label>Add your comment</label>
                                             <textarea id="message" class="md-input"></textarea>
@@ -653,7 +654,6 @@ require 'auth.php';
 
     <!--  invoices functions -->
     <script src="assets/js/pages/page_invoices.min.js"></script>
-    
     <script>
         $(function() {
             if(isHighDensity()) {
@@ -897,5 +897,6 @@ require 'auth.php';
 
         });
     </script>
+
 </body>
 </html>

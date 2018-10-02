@@ -47,6 +47,7 @@ $(document).ready(function(){
 	  }
 
 	});
+	//btn remove referral chat comment
 });
 function display_errors(error){
 	UIkit.modal.alert(error);

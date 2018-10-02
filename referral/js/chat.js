@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	//get
 	var requestUrl="get_chats";
 	var data=[];
 	var outputDiv=$("#chat_output");

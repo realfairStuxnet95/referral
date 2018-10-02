@@ -539,6 +539,54 @@ class Referral extends Query{
 
 		return $status;
 	}
+	//function to save chat notification
+	public function save_chat_notification($referral_id,$sender_id,$sender_type,$from_hospital,$receive_hospital,$message){
+		global $con;
+		$query="INSERT INTO referral_chat_not(referral_id,sender_id,sender_type,from_hospital,receive_hospital,message,status)
+		VALUES (\"$referral_id\",\"$sender_id\",\"$sender_type\",\"$from_hospital\",\"$receive_hospital\",\"$message\",'UNREAD')";
+		$status=$this->insert($con,$query);
+		return $status;
+	}
+	//function to remove referral chat message
+	public function remove_message($message_id){
+		global $con;
+		$query="DELETE FROM referral_chat WHERE message_id=\"$message_id\"
+				LIMIT 1";
+		return $this->update($con,$query);
+	}
+	//get from hospital
+	public function get_from_hospital($referral_id){
+		global $con;
+		$query="SELECT from_hospital_id FROM referrals WHERE referral_id=\"$referral_id\"
+				LIMIT 1";
+		$result=$this->select($con,$query);
+		$from_hospital=0;
+		foreach ($result as $key => $value) {
+			$from_hospital=(int)$value['from_hospital_id'];
+		}
+		return $from_hospital;
+	}
+	public function get_receive_hospital($referral_id){
+		global $con;
+		$query="SELECT to_hospital_id FROM referrals WHERE referral_id=\"$referral_id\"
+				LIMIT 1";
+		$result=$this->select($con,$query);
+		$to_hospital=0;
+		foreach ($result as $key => $value) {
+			$to_hospital=(int)$value['to_hospital_id'];
+		}
+		return $to_hospital;
+	}
+	//function to get chat sender notifications
+	public function get_referral_chat_not($user_id,$hospital_id){
+		global $con;
+		$query="SELECT * FROM referral_chat_not
+				WHERE sender_id!=\"$user_id\"
+				AND (from_hospital=\"$hospital_id\" OR receive_hospital=\"$hospital_id\")
+				ORDER BY notif_id DESC";
+		$result=$this->select($con,$query);
+		return $result;
+	}
 	################### END OF REFERRAL CHATS ##########################
 	#######################COUNTER REFERRAL TAB #########################
 	public function get_outgoing_counter_referral($hospital_id){

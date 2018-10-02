@@ -1,6 +1,6 @@
     <aside id="sidebar_main">
         <center>
-            <a href="#" class="sSidebar_hide sidebar_logo_large">
+            <a href="dashboard" class="sSidebar_hide sidebar_logo_large">
                 <img class="logo_regular" src="assets/img/logo/logo_text.png" alt="" style="height: auto;width: 60%;"/>
             </a>
         </center>
