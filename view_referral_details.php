@@ -5,6 +5,11 @@ if(isset($_GET['key']) && isset($_GET['title'])){
     $hasCounterReferral=$referral->hasCounterReferral($_GET['key']);
     $counterReferral=array();
     $counterReferral=$referral->get_counter_referral($_GET['key']);
+    $from_hospital=$referral->from_hospital_info($_GET['key']);
+    $hospital_logo="";
+    $hospital_id=0;
+    $logo_url="";
+    //var_dump($from_hospital);
 }else{
 	header("Location:dashboard");
 }
@@ -137,12 +142,23 @@ require 'auth.php';
             </h3>
         </div>
         <div class="md-card-content invoice_content print_bg{{#if invoice.footer}} invoice_footer_active{{/if}}">
-            {{#if invoice.header}}
-                <div class="invoice_header md-bg-blue-grey-500">
-                    <img src="assets/img/logo_light.png" alt="" height="30" width="140"/>
-                    <img class="uk-float-right" src="assets/img/others/html5-css-javascript-logos.png" alt="" height="80" width="205"/>
-                </div>
-            {{/if}}
+            <div style="font-weight: bold;float:right;">
+                <p>
+                    <?php 
+                    foreach ($from_hospital as $key => $value) {
+                        $hospital_id=(int)$value['hospital_id'];
+                        $hospital_logo=$hospital->getHospitalLogo($hospital_id);
+                    }
+                    if($hospital_logo!=""){
+                        $logo_url="system_images/hospitals/".$hospital_logo;
+                    }else{
+                        $logo_url="assets/img/logo/logo_text.png";
+                    }
+                    ?>
+
+                </p>
+                <img src="<?php echo $logo_url; ?>" style="width:120px;">
+            </div>
             <div style="font-weight: bold;" class="uk-margin-medium-bottom">
             	<?php 
             	$dates=$referral->referral_dates($_GET['key']);
@@ -167,8 +183,6 @@ require 'auth.php';
                         <span class="uk-text-muted uk-text-small uk-text-italic">From:</span>
                         <address>
                             	<?php
-                            	$from_hospital=array();
-                            	$from_hospital=$referral->from_hospital_info($_GET['key']);
                             	foreach ($from_hospital as $key => $value) {
                             		?>
                             		<p>

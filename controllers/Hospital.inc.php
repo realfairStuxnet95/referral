@@ -187,15 +187,24 @@ class Hospital extends Query{
 	}
 
 	//function to get Hospital User profiles
-	public function get_user_profile($user_id){
-
-	}
 	//function to set hospital logo
 	public function setHospitalLogo($hospital_id,$logo_url){
 		global $con;
 		$query="UPDATE hospitals SET profile_picture=\"$logo_url\" WHERE hospital_id=\"$hospital_id\"";
 		$status=$this->update($con,$query);
 		return $status;
+	}
+	//function to check if hospital has logo
+	public function getHospitalLogo($hospital_id){
+		global $con;
+		$query="SELECT profile_picture FROM hospitals
+				WHERE hospital_id=\"$hospital_id\"";
+		$result=$this->select($con,$query);
+		$logo_url="";
+		foreach ($result as $key => $value) {
+			$logo_url=$value['profile_picture'];
+		}
+		return $logo_url;
 	}
 }
 //instantiate class of Hospital
