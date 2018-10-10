@@ -24,13 +24,15 @@ $(document).ready(function(){
             contentType: false,  
             processData:false,  
             success: function(data)  
-            {  
-            	if(data.match("0")){
+            { 
+            	if(data.match("200")){
 					(function(modal){ modal = UIkit.modal.blockUI('<div class=\'uk-text-center\'>Referral Saved successfully Waiting for Status Changes.<br/><img class=\'uk-margin-top\' src=assets/img/loader/loader.gif style=\width:100px\ alt=\'\'>'); setTimeout(function(){
 					 modal.hide()
-					 window.location="dashboard";
+					 window.location="dashboard?action=outgoing_referrals&success";
 					}, 5000) })();
-            	} 
+            	}else{
+            		display_errors(data);
+            	}
             }  
        });  
   }); 

@@ -31,7 +31,8 @@ class Referral extends Query{
 		$result=array();
 		$query="SELECT * FROM referrals 
 				WHERE from_hospital_id=\"$from_hospital_id\"
-				AND status!='DELETED'";
+				AND status!='DELETED'
+				ORDER BY referral_id DESC";
 		$result=$this->select($con,$query);
 		return $result;
 	}
@@ -93,19 +94,25 @@ class Referral extends Query{
 	    $status=$this->insert($con,$query);
 	    return $status;
 	}
-
+	public function get_referral_attachments($referral_id){
+		global $con;
+		$query="SELECT * FROM referral_attachments
+				WHERE referral_id=\"$referral_id\"
+				AND status='ACTIVE'";
+		return $this->select($con,$query);
+	}
 	########################## SAVE REFERRAL STEPS ##########################################
 
 	//function to register step1
 	public function step1($referral_id,$patient_fname,$patient_lname,$patient_id_no,
-		$patient_phone,$patient_dob,$patient_sex){
+		$patient_phone,$patient_dob,$patient_sex,$guardian,$guardian_phone){
 		global $con;
 		$query="INSERT INTO referrals(referral_id,patient_fname,patient_lname,
 									  patient_id_no,patient_phone,patient_dob,
-									  patient_sex)
+									  patient_sex,guardian,guardian_phone)
 							   VALUES(\"$referral_id\",\"$patient_fname\",\"$patient_lname\",
 							   		 \"$patient_id_no\",\"$patient_phone\",\"$patient_dob\",
-							   		 \"$patient_sex\")";
+							   		 \"$patient_sex\",\"$guardian\",\"$guardian_phone\")";
 	$status=$this->insert($con,$query);
 	return $status;
 	}
@@ -670,6 +677,7 @@ class Referral extends Query{
 		return $department_name;
 	}
 	################## END OF GET RECEIVE DEPARTMENT ##############
+	################## REFERRAL 
 }
 	
 //instantiate class Referral

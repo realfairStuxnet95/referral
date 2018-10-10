@@ -16,7 +16,7 @@ if(isset($_POST['hospital'])){
 						<input type="text" class="md-input" value="<?php echo $value['hospital_name']; ?>" name="" disabled>
 						<input type="hidden" id="to_hospital_id" value="<?php echo $value['hospital_id']; ?>" name="to_hospital_id">
 					</div>
-                    <div class="uk-width-medium-1-2">
+                    <div class="uk-width-medium-1-1">
                         <label>Hospital Category</label>
                         <select class="md-input" disabled>
                             <option value="<?php echo $value['category'] ?>">
@@ -26,7 +26,7 @@ if(isset($_POST['hospital'])){
                            </option>
                         </select>
                     </div>
-                    <div class="uk-width-medium-1-2">
+                    <div class="uk-width-medium-1-1">
                         <label>Department</label>
                         <select id="department" name="department" class="md-input">
                         	<?php 

@@ -18,7 +18,7 @@
                         <div class="uk-width-1-1">
                             <center>
                                 <button id="btn_upload" class="md-btn md-btn-success">FINISH TRANSFER REQUEST</button>
-                                <a href='dashboard?action=outgoing_referrals' class="md-btn md-btn-default">SKIP ATTACHMENTS</a>
+                                <a href='dashboard?action=outgoing_referrals&success' class="md-btn md-btn-default">SKIP ATTACHMENTS</a>
                             </center>
                         </div>
                     </div> 

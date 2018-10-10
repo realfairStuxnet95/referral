@@ -3,7 +3,6 @@
 			<a href="add_on_ref" class="uk-button uk-button-primary uk-button-large">
 				ADD ONGOING REFERRAL
 			</a>
-			<button class="uk-button uk-button-danger uk-button-large">EXPORT PDF</button>
 		</div>
 	 <div class="uk-width-1-2">
 		<div class="uk-input-group">

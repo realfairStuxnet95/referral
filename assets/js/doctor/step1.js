@@ -15,7 +15,8 @@ $(document).ready(function(){
         var dob=$("#dob").val();
         var gender=$("#gender").val();
         var id_no=$("#id_no").val();
-
+        var guardian=$("#guardian").val();
+        var guardian_phone=$("#guardian_phone").val();
         //validate data
         if((fname.length>=3) &&(validate_string(fname))){
            if((lname.length>=3) &&(validate_string(lname))){
@@ -28,7 +29,9 @@ $(document).ready(function(){
                                 patient_id_no:id_no,
                                 patient_phone:phone,
                                 patient_dob:dob,
-                                patient_sex:gender
+                                patient_sex:gender,
+                                guardian:guardian,
+                                guardian_phone:guardian_phone
                             },function(data){
                                 //check data
                                 if(data!="error"){
@@ -54,4 +57,24 @@ $(document).ready(function(){
             display_errors("Please enter First names");
         }
     });
+
+    $("#checkbox").click(function(){
+        showGardian();
+    });
 });
+function showGardian(){
+    if($("#checkbox").is(':checked')){
+        $("#div_guardian").slideDown();
+    }else{
+        $("#div_guardian").slideUp();
+    }
+    
+}
+function switch_tabs(old,tab,icon){
+    tab.removeAttr("class");
+    tab.attr("class","uk-accordion-title uk-accordion-title-warning");
+    old.removeAttr("class");
+    old.attr("class","uk-accordion-title uk-accordion-title-success");
+    icon.show();
+
+}

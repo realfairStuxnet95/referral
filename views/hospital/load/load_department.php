@@ -1,10 +1,4 @@
 <?php 
- //get hospital id from user sessions
-require_once 'includes/database.inc.php';
-include_once 'includes/Functions.php';
-include_once 'controllers/HospitalAdmin.php';
-include_once 'controllers/User.inc.php';
-
 //get the hospital id from hospital admin
 $hos_id=$user->get_user_hospital_id($_SESSION['user_id']);
 //gett department of a hospital

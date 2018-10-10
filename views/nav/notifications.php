@@ -28,7 +28,7 @@ if($user_type=="doctor"){
             <ul id="header_alerts" class="uk-switcher uk-margin">
                 <li aria-hidden="false" class="uk-active">
                     <ul class="md-list md-list-addon">
-                        <?php 
+<!--                         <?php 
                         if(count($notifications)>0){
                             foreach ($notifications as $key => $value) {
                                 $doctor_names=$doctor->get_doctor_names($value['sender_id']);
@@ -74,7 +74,7 @@ if($user_type=="doctor"){
                             </div>
                             <?php
                         }
-                        ?>
+                        ?> -->
                     </ul>
                     <div class="uk-text-center uk-margin-top uk-margin-small-bottom">
                         <a href="page_mailbox.html" class="md-btn md-btn-flat md-btn-flat-primary js-uk-prevent">Show All</a>

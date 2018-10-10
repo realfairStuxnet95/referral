@@ -10,8 +10,8 @@ require 'auth.php';
     <!-- Remove Tap Highlight on Windows Phone IE -->
     <meta name="msapplication-tap-highlight" content="no"/>
 
-    <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/img/logo/logo.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/img/logo/logo.png" sizes="32x32">
 
     <title><?php echo "Welcome\t"; echo $_SESSION['names']; ?></title>
 
@@ -51,7 +51,7 @@ require 'auth.php';
         <div id="page_content_inner">
             <?php
             $type=$_SESSION['user_type'];
-             if(isset($_GET['action'])){
+            if(isset($_GET['action'])){
                 $action=$_GET['action'];
                 if($type=="SuperAdmin"){
                     switch ($action) {
@@ -115,7 +115,7 @@ require 'auth.php';
                                 include 'views/hospital/hospital_settings.php';
                                 break;
                             default:
-                            include 'views/hospital/dashboard.php';
+                                include 'views/hospital/dashboard.php';
                             break;
                         }
                     }elseif($type=="doctor"){

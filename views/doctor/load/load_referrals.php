@@ -1,11 +1,6 @@
 <?php 
- //get hospital id from user sessions
-require_once 'includes/database.inc.php';
-include_once 'includes/Functions.php';
-include_once 'controllers/Referral.inc.php';
-include_once 'controllers/Doctor.php';
+require_once 'module_loader.php';
 //get the hospital id from hospital admin
-$hos_id;
 $user_id=$_SESSION['user_id'];
 $user_type=$_SESSION['user_type'];
 if($user_type=="doctor"){
@@ -14,14 +9,12 @@ if($user_type=="doctor"){
 }elseif($user_type=$_SESSION['nurse']){
 
 }
-
-$referrals=array();
 $referrals=$referral->ongoing_referrals($hos_id);
 ?>
 <table class="uk-table uk-table-nowrap table_check uk-table-hover">
     <thead style="background: #F5F5F5;">
     <tr>
-        <th class="uk-width-1-10 uk-text-center">Number</th>
+        <th class="uk-width-1-10 uk-text-center">#</th>
         <th class="uk-width-1-10 uk-text-center">Date</th>
         <th class="uk-width-2-10">Patient Info</th>
         <th class="uk-width-2-10 uk-text-center">Referring Provider</th>
@@ -128,6 +121,12 @@ $referrals=$referral->ongoing_referrals($hos_id);
                                         <?php echo $value['status']; ?>
                                     </span>
                                         <?php
+                                    }elseif($status=="RECEIVED"){
+                                        ?>
+                                        <span class="uk-badge uk-badge-success">
+                                            <?php echo $value['status']; ?>
+                                        </span>
+                                        <?php
                                     }
                                     ?>
                                 </p>
@@ -142,9 +141,9 @@ $referrals=$referral->ongoing_referrals($hos_id);
                         $status=$value['status'];
                         if($status=="PENDING"){
                             ?>
-                        <a action="<?php echo $value['referral_id']; ?>" class=" delete uk-button uk-button-danger">
-                            <i class="fa fa-trash-o"></i>
-                        </a>
+                            <a action="<?php echo $value['referral_id']; ?>" class=" delete uk-button uk-button-danger">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
                             <?php
                         }
                         ?>

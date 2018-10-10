@@ -3,7 +3,6 @@
  <div class="uk-width-1-1">
 <button class="uk-button uk-button-primary uk-button-large" data-uk-modal="{target:'#modal_overflow'}">ADD NEW DEPARTMENT
 </button>
-<button class="uk-button uk-button-danger uk-button-large">EXPORT PDF</button>
 <div id="modal_overflow" class="uk-modal">
     <div class="uk-modal-dialog">
         <button type="button" class="uk-modal-close uk-close"></button>

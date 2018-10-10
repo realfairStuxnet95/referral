@@ -19,8 +19,15 @@
                         <span class="menu_title">Manage Referrals</span>
                     </a>
                     <ul>
+                        <li>
+                            <a href="dashboard?action=outgoing_referrals">
+                                Create Outgoing referral
+                            </a>
+                        </li>
                         <li><a href="dashboard?action=tabbed">Incoming referrals</a></li>
-                        <li><a href="dashboard?action=outgoing_referrals">Outgoing referrals</a></li>
+                        <li>
+                            <a href="dashboard?action=outgoing_referrals">Outgoing referrals</a>
+                        </li>
                     </ul>
                 
                 </li>

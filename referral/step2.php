@@ -51,7 +51,7 @@
 <div class="row">
 <div class="col-lg-12">
  <div class="uk-width-1-1">
-<button class="uk-button uk-button-default uk-button-large" data-uk-modal="{target:'#modal_overflow'}">SELECT TO HOSPITAL
+<button class="uk-button uk-button-default uk-button-large" data-uk-modal="{target:'#modal_overflow'}" style="margin:10px;">SELECT TO HOSPITAL
 </button>
 <div class="uk-grid" data-uk-grid-margin id="div_hospital1">
 

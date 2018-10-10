@@ -1,11 +1,6 @@
 <?php 
- //get hospital id from user sessions
-require_once 'includes/database.inc.php';
-include_once 'controllers/HospitalAdmin.php';
-include_once 'controllers/User.inc.php';
 //get the hospital id from hospital admin
 $hos_id=$user->get_user_hospital_id($_SESSION['user_id']);
-$doctors=array();
 $doctors=$admin->get_all_doctors($hos_id);
 ?>
 
@@ -40,7 +35,7 @@ $doctors=$admin->get_all_doctors($hos_id);
                     <?php
                 }else{
                     ?>
-                    <img class="md-user-image" src="assets/img/avatars/avatar_01_tn.png" alt=""/>
+                    <img class="md-user-image" src="assets/img/avatars/doctor.png" alt=""/>
                     <?php
                 }
                 ?>

@@ -4,10 +4,7 @@
 if(isset($_POST['nurse_names']) AND isset($_POST['nurse_email']) AND isset($_POST['hos_id']))
 {
 	//load modules
-require '../../../includes/database.inc.php';
-include '../../../includes/Functions.php';
-include '../../../controllers/HospitalAdmin.php';
-include '../../../controllers/User.inc.php';
+require '../../../module_loader.php';
 //sanitize data from form
 $nurse_names=$function->sanitize($_POST['nurse_names']);
 $nurse_email=$function->sanitize($_POST['nurse_email']);

@@ -12,11 +12,12 @@ if(isset($_POST['patient_fname']) && isset($_POST['patient_lname'])){
 	$patient_phone=$function->sanitize($_POST['patient_phone']);
 	$patient_dob=$function->sanitize($_POST['patient_dob']);
 	$patient_sex=$function->sanitize($_POST['patient_sex']);
-
+	$guardian=$function->sanitize($_POST['guardian']);
+	$guardian_phone=$function->sanitize($_POST['guardian_phone']);
 	//create referral id
 	$referral_id=$referral->create_referral_id();
 	$status=$referral->step1($referral_id,$patient_fname,$patient_lname,$patient_id_no,
-		$patient_phone,$patient_dob,$patient_sex);
+		$patient_phone,$patient_dob,$patient_sex,$guardian,$guardian_phone);
 	if($status){
 		//return the id of referral so we can continue
 	echo $referral->get_last_referral_id();

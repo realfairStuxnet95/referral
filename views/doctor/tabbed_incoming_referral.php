@@ -12,9 +12,9 @@
             </li>
         </ul>
         <ul id="tabs_4" class="uk-switcher uk-margin">
-            <li class="pendings">Content 1</li>
-            <li class="scheduled">Content 2</li>
-            <li class="received">Content 3</li>
+            <li class="pendings"></li>
+            <li class="scheduled"></li>
+            <li class="received"></li>
         </ul>
     </div>
 </div>

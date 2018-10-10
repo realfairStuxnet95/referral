@@ -32,7 +32,20 @@
                             <label>Patient Phone</label>
                             <input id="phone" name="phone" type="number" class="md-input"  required>
                         </div>
-
+                        <div class="uk-width-medium-1-2">
+                            <label>Has patient have a Guardian?</label>
+                            <input id="checkbox" type="checkbox" name="">
+                        </div>
+                        <div id="div_guardian" class="uk-grid" data-uk-grid-margin="" style="display: none;">
+                            <div class="uk-width-medium-1-1">
+                                <label>Guardian Names</label>
+                                <input id="guardian" name="guardian" type="text" class="md-input"  required>
+                            </div>
+                            <div class="uk-width-medium-1-1">
+                                <label>Guardian Phone</label>
+                                <input id="guardian_phone" name="guardian_phone" type="number" class="md-input"  required>
+                            </div> 
+                        </div>
                         <div class="uk-width-medium-1-1">
                             <button id="btn_step1" class="md-btn">SAVE AND CONTINUES</button>
                         </div>

@@ -3,7 +3,7 @@
         <div class="header_main_content">
             <nav class="uk-navbar">
                                     <div class="main_logo_top">
-                        <a href="dashboard"><img src="assets/img/logo_main_white.png" alt="" height="15" width="71"/></a>
+                        <a href="dashboard"><img src="assets/img/logo/logo.png" alt="" height="15" width="41"/></a>
                     </div>
                                 
                 <!-- secondary sidebar switch -->

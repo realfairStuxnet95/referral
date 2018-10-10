@@ -2,6 +2,9 @@
     <div class="md-card-content">
         <div class="uk-overflow-container">
             <?php
+            if(isset($_GET['success'])){
+            	include 'load/referral_saved.php';
+            }
             include 'add/add_referral.php';
             include 'load/load_referrals.php';
             ?>

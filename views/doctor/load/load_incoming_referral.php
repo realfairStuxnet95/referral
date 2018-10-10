@@ -1,11 +1,4 @@
 <?php 
- //get hospital id from user sessions
-require_once 'includes/database.inc.php';
-include_once 'includes/Functions.php';
-include_once 'controllers/Referral.inc.php';
-include_once 'controllers/Doctor.php';
-//get the hospital id from hospital admin
-$hos_id;
 $user_id=$_SESSION['user_id'];
 $user_type=$_SESSION['user_type'];
 if($user_type=="doctor"){

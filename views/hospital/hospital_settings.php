@@ -39,6 +39,10 @@ $info=$admin->get_hospital_info($hospital_id);
                                 ?>
                                 <img src="<?php echo $image_url; ?>" id="profile" style="width: 100px;height: auto;">
                                 <?php
+                            }else{
+                                ?>
+                                <img src="" id="profile" style="width: 100px;height: auto;">
+                                <?php 
                             }
                             ?>
                             

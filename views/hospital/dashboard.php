@@ -1,5 +1,5 @@
 <?php
-require 'module_loader.php';
+require_once 'module_loader.php';
 $hos_id=$user->get_user_hospital_id($_SESSION['user_id']);
 //check if hospital has been activated
 $activate_status=$admin->check_if_hospital_is_activated($hos_id);

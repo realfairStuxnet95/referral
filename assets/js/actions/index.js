@@ -4,6 +4,9 @@ $(document).ready(function(){
 		var element=$("#tb_exportable");
 		window.print(element);
 	});
+	$("#btn_export_ongoing_ref").click(function(){
+		window.print();
+	});
 	$("#hospital_logo").on("change",function(){
 	  var file=document.getElementById("hospital_logo").files[0];
 	  var name = document.getElementById("hospital_logo").files[0].name;
