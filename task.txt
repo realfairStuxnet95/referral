@@ -1,0 +1,4 @@
+TODO TASKS:
+==========
+
+1.develop a report page for hospital admin which will ask report type if it is for patients receive,stay length or referrals info or doctor and nurses available in the hospital have a first pop up life pit vidura.

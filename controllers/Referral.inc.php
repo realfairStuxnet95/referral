@@ -26,17 +26,27 @@ class Referral extends Query{
 	}
 
 	//function to return ongoing referrals
-	public function ongoing_referrals($from_hospital_id){
+	public function ongoing_referrals($from_hospital_id,$options,$status,$number,$input){
 		global $con;
-		$result=array();
 		$query="SELECT * FROM referrals 
 				WHERE from_hospital_id=\"$from_hospital_id\"
-				AND status!='DELETED'
-				ORDER BY referral_id DESC";
+				";
+		if($options==1){
+			$query.=" AND status=\"$status\"";
+		}elseif($options==2){
+			$query.=" AND referral_id=\"$number\"";
+		}elseif($options==3){
+			$query.=" AND patient_fname LIKE \"%$input%\" OR patient_lname LIKE \"%$input%\" OR (patient_phone LIKE \"%$input%\" OR to_hospital_name LIKE \"%$input%\")";
+		}
+		$query.=" AND status!='DELETED' ORDER BY referral_id DESC";
 		$result=$this->select($con,$query);
 		return $result;
 	}
-
+	public function ongoing_dates(){
+		global $con;
+		$query="SELECT DISTINCT regDate FROM referrals ORDER BY referral_id DESC ";
+		return $this->select($con,$query);
+	}
 	//function to return incoming referrals
 	public function incoming_referrals($to_hospital_id){
 		global $con;
@@ -469,6 +479,33 @@ class Referral extends Query{
 		}
 		return $result;
 	}
+	public function search_incoming_ref($hospital_id,$option,$input){
+		global $con;
+		$query="SELECT * FROM referrals WHERE to_hospital_id=\"$hospital_id\"";
+		if($option==1){
+			$query.=" AND status=\"$input\"";
+		}elseif($option==2){
+			$query.=" AND referral_id=\"$input\"";
+		}
+		$query.="AND status!='DELETED' ORDER BY referral_id DESC";
+		//return $query;
+		return $this->select($con,$query);
+	}
+	public function get_system_referrals($option,$status,$hospital_id,$sent_date){
+		global $con;
+		$query="SELECT * FROM referrals";
+		if($option==1){
+
+		}elseif($option==2){
+			$query.=" WHERE status=\"$status\"";
+		}elseif($option==3){
+			$query.=" WHERE from_hospital_id=\"$hospital_id\" OR to_hospital_id=\"$hospital_id\"";
+		}elseif($option==4){
+			$query.=" WHERE regDate=\"$sent_date\"";
+		}
+		$query.=" ORDER BY referral_id DESC";
+		return $this->select($con,$query);
+	}
 	######################## END  REFERRAL SELECT ACTION FOR TABS ##############
 	##################### SENDING COUNTER REFERRAL SECTION #######################
 
@@ -629,9 +666,7 @@ class Referral extends Query{
 					OR (from_hospital_name LIKE \"%$input%\" OR to_hospital_name LIKE \"%$input%\")
 					";
 		}
-		$result=array();
-		$result=$this->select($con,$query);
-		return $result;
+		return $this->select($con,$query);
 	}
 	###################### END OF COUNTER REFERRAL TAB ##################
 

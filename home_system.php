@@ -91,6 +91,9 @@ require 'auth.php';
                         case 'transport':
                             include 'views/super/transport_mode.php';
                             break;
+                        case 'referrals':
+                            include 'views/super/system_referral.php';
+                            break;
                         default:
                             include 'views/super/system_dashboard.php';
                             break;
@@ -113,6 +116,9 @@ require 'auth.php';
                                 break;
                             case 'hospital_settings':
                                 include 'views/hospital/hospital_settings.php';
+                                break;
+                            case 'referrals':
+                                include 'views/doctor/referrals.php';
                                 break;
                             default:
                                 include 'views/hospital/dashboard.php';
@@ -706,6 +712,7 @@ require 'auth.php';
 
         });
     </script>
+    <script src="assets/js/loader/post_loader.js"></script>
     <script src="assets/js/actions/index.js"></script>
 </body>
 </html>

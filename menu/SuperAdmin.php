@@ -70,6 +70,18 @@
                         <span class="menu_title">Blog & News</span>
                     </a>
                 </li>
+                <li title="Chats">
+                    <a href="#">
+                        <span class="menu_icon"><i class="fa fa-line-chart" style="font-size: 24px;"></i></span>
+                        <span class="menu_title">Manage Reports</span>
+                    </a>
+                    <ul>
+                        <li><a href="dashboard?action=referrals">Referrals</a></li>
+                        <li><a href="dashboard?action=nurses">Nurses</a></li>
+                        <li><a href="dashboard?action=receptionists">Receptionist.</a></li>
+                    </ul>
+                
+                </li>
                 <li class="menu_admin">
                     <a href="dashboard?action=system_settings">
                         <span class="menu_icon"><i class="fa fa-wrench" style="font-size: 24px;"></i></span>

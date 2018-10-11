@@ -223,7 +223,43 @@ class SuperAdmin extends Query{
 		}
 		return $result;	
 	}
+	public function get_system_departments($options,$initial)
+	{
+		global $con;
+		$query="";
+		$result=array();
+		$allowed=array('*','PENDING','ACTIVATED');
+		if(in_array($options,$allowed)){
+			switch ($options) {
+				case '*':
+				$query="SELECT DISTINCT * FROM system_departments 
+						WHERE status!='DELETED' AND id>=\"$initial\" 
+						ORDER BY id DESC 
+						LIMIT 20";
+					break;
+				case 'PENDING':
+					$query="SELECT DISTINCT * FROM system_departments 
+							WHERE status=\"$options\"
+							 AND (id>=\"$initial\")
+							 LIMIT 20";
+					break;
+				case 'ACTIVATED':
+					$query="SELECT DISTINCT * FROM system_departments 
+							WHERE status=\"$options\"
+							AND (id>=\"$initial\")
+							ORDER BY id DESC
+							LIMIT 20";
+					break;		
+			}	
 
+		//EXECUTE QUERY
+		
+		$result=$this->select($con,$query);
+		}else{
+			$result[0]="error";
+		}
+		return $result;	
+	}
 	//function to get hospitals
 
 	//search doctors by department ,hospital,names address

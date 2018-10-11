@@ -1,4 +1,11 @@
 $(document).ready(function(){
+	var input;
+	var requestUrl="outgoing";
+	var data=[];
+	var output=$("#outputDivPlace");
+	var loaderMsg="please wait...";
+	data[0]="*";
+	loadData(requestUrl,data,output,loaderMsg);
 	$("#btn_export_doc").click(function(){
 		var content=$("#tb_exportable").html();
 		var element=$("#tb_exportable");
@@ -7,6 +14,7 @@ $(document).ready(function(){
 	$("#btn_export_ongoing_ref").click(function(){
 		window.print();
 	});
+
 	$("#hospital_logo").on("change",function(){
 	  var file=document.getElementById("hospital_logo").files[0];
 	  var name = document.getElementById("hospital_logo").files[0].name;
@@ -50,7 +58,6 @@ $(document).ready(function(){
 	  }
 
 	});
-	//btn remove referral chat comment
 });
 function display_errors(error){
 	UIkit.modal.alert(error);
@@ -64,4 +71,7 @@ function printDiv(divName) {
      window.print();
 
      document.body.innerHTML = originalContents;
+}
+function loadReferrals(){
+	loadData(requestUrl,data,output,loaderMsg);
 }

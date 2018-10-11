@@ -45,6 +45,7 @@ RewriteRule ^hospital_settings$ views/hospital/actions/hospital_settings.php [NC
 #END OF HOSPITAL SETTINGS
 
 #REFERRAL URL
+RewriteRule ^outgoing$ views/referrals/outgoing_referrals.php [NC,L]
 RewriteRule ^get_incoming$ views/referrals/incoming_referrals.php [NC,L]
 RewriteRule ^incoming_referral_actions$ views/referrals/incoming_referrals_actions.php [NC,L]
 #END OF REFERRAL URLS

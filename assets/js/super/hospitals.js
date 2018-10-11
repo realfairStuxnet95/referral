@@ -4,7 +4,23 @@ $(document).ready(function(){
 	var output=$("#outputDiv");
 	var loaderMsg="please wait...";
 	var actionUrl="hospital_actions";
-
+	$("#btn_hopitals_export").click(function(){
+		window.print();
+	});
+	$("#select_ref_status").change(function(){
+		var input=$(this).val();
+		data[0]="get_referrals";
+		data[1]=2;
+		data[2]=input;
+		loadData(requestUrl,data,output,loaderMsg);
+	});
+	$("#select_ref_hos").change(function(){
+		var input=$(this).val();
+		data[0]="get_referrals";
+		data[1]=3;
+		data[2]=input;
+		loadData(requestUrl,data,output,loaderMsg);
+	});
 	$("#select_hospitals").change(function(){
 		var input=$(this).val();
 		data[0]="by_category";

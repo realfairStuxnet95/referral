@@ -7,7 +7,7 @@ if($activate_status){
     ?>
 <aside id="sidebar_main">
     <center>
-        <a href="#" class="sSidebar_hide sidebar_logo_large">
+        <a href="dashboard" class="sSidebar_hide sidebar_logo_large">
             <img class="logo_regular" src="assets/img/logo/logo_text.png" alt="" style="height: auto;width: 60%;"/>
         </a>
     </center>
@@ -37,6 +37,12 @@ if($activate_status){
                 <a href="dashboard?action=departments">
                     <span class="menu_icon"><i class="fa fa-bell" style="font-size: 24px;"></i></span>
                     <span class="menu_title">Departments</span>
+                </a>
+            </li>
+            <li>
+                <a href="dashboard?action=referrals">
+                    <span class="menu_icon"><i class="fa fa-area-chart" style="font-size: 24px;"></i></span>
+                    <span class="menu_title">Manage Referrals</span>
                 </a>
             </li>
             <li class="menu_admin">
