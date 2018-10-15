@@ -20,7 +20,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="dashboard?action=outgoing_referrals">
+                            <a href="add_on_ref">
                                 Create Outgoing referral
                             </a>
                         </li>
