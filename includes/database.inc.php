@@ -1,23 +1,13 @@
 <?php
 $server="localhost";
-$user="root";
-$password="";
+$user="api_access";
+$password="Stuxnet7268";
 $database="doctor";
 $con=mysqli_connect($server,$user,$password);
 if($con){
 	$db=mysqli_select_db($con,$database);
-	if($db){
-		//echo "online connected";
-	}
-}else{
-	$con=mysqli_connect("localhost","root","");
-	if($con){
-		$db=mysqli_select_db($con,"doctor");
-		if($db){
-			echo "connected";
-		}else{
-			die(mysqli_error($con));
-		}
+	if(!$db){
+		die("Something went wrong Please contact system Admin.");//echo "online connected";
 	}
 }
 ?>
