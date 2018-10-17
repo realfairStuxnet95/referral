@@ -406,26 +406,47 @@ class Referral extends Query{
 		global $con;
 		$query="";
 		$status;
+		$scheduleDate=$date_field.' '.$time_field;
 		$options=(int)$options;
 		if($options==1){
-			$query="UPDATE referrals SET status='RECEIVED' 
+			$currentDate=date("Y-m-d h:i:sa");
+			$query="UPDATE referrals SET status='RECEIVED',receivedDate=\"$currentDate\" 
 				WHERE referral_id=\"$referral_id\"
 				LIMIT 1";
 
 		}elseif($options==2){
-			$query="UPDATE referrals SET status='SCHEDULED'
-				    WHERE referral_id=\"$referral_id\"
-				    LIMIT 1";
-		}elseif($options==3){
 			$query="UPDATE referrals SET status='PENDING'
 					WHERE referral_id=\"$referral_id\"
 					LIMIT 1";
-
 		}
 		$status=$this->update($con,$query);
 		return $status;
 	}
-
+	public function scheduleReferral($referral_id,$receive_hospital,$date_field,$time_field,$department,$doctor){
+		global $con;
+		$status=false;
+		$scheduleDate=$date_field.' '.$time_field;
+		$query="UPDATE referrals SET status='SCHEDULED',scheduledDate=\"$scheduleDate\"
+				WHERE referral_id=\"$referral_id\"
+				LIMIT 1";
+		$update_status=$this->update($con,$query);
+		if($update_status){
+			$query="INSERT INTO scheduled_referrals(referral_id,receive_hospital,date_time,receive_department,receive_doctor,status)
+					VALUES (\"$referral_id\",\"$receive_hospital\",\"$scheduleDate\",\"$department\",\"$doctor\",'ACTIVE')";
+			$status=$this->insert($con,$query);
+		}else{
+			$status=false;
+		}
+		return $status;
+	}
+	public function get_scheduledReferral_info($referral_id){
+		global $con;
+		$query="SELECT * FROM scheduled_referrals
+				WHERE referral_id=\"$referral_id\"
+				ORDER BY schedule_id DESC
+				LIMIT 1";
+		return $this->select($con,$query);
+	}
 	//function to check if referral has a counter referral
 	public function hasCounterReferral($referral_id){
 		global $con;
@@ -686,7 +707,7 @@ class Referral extends Query{
 	public function get_patient_info($referral_id){
 		global $con;
 		$query="SELECT patient_fname,patient_lname,patient_id_no,
-					   patient_phone,patient_dob,patient_sex 
+					   patient_phone,patient_dob,patient_sex,guardian,guardian_phone
 					   FROM referrals
 					   WHERE referral_id=\"$referral_id\"
 					   LIMIT 1";

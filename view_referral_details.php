@@ -259,7 +259,11 @@ require 'auth.php';
                             echo '<br>Patient Phone:<b> '.$value['patient_phone'].'</b>';
                             echo '<br>Patient Gender:<b> '.$value['patient_sex'].'</b>';
                             echo '<br>Patient DOB:<b> '.$value['patient_dob'].'</b>';
-                             
+                            
+                            if(!empty($value['guardian']) && !empty($value['guardian_phone'])){
+                                echo '<br>Guardian:<b>'.$value['guardian'].'</b>';
+                                echo '<br>Guardian Phone:<b>'.$value['guardian_phone'].'</b>';
+                            }
                         }
                         ?>
                         

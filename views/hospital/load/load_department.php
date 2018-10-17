@@ -8,34 +8,38 @@ $result=$admin->load_department($hos_id);
 <table class="uk-table uk-table-condensed table_check">
     <thead>
     <tr>
-        <th class="uk-width-2-10">Department</th>
-        <th class="uk-width-2-10 uk-text-center">Description</th>
-        <th class="uk-width-1-10 uk-text-center">Status</th>
-        <th class="uk-width-2-10 uk-text-center">Actions</th>
+        <th>#</th>
+        <th>Department</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
         <?php 
          foreach ($result as $key => $value) {
            ?>
-        <tr>
-            <td class="uk-text-center">
-                <?php 
-                //get department name
-                echo $admin->get_department_name($value['name']); 
-                ?>
-                    
+            <tr>
+                <td>
+                    <img class="md-user-image" src="assets/img/avatars/department.png" alt="" style="max-height: 35px;" />
                 </td>
-            <td class="uk-text-center"><?php echo $value['description']; ?></td>
-            <td class="uk-text-center"><span class="uk-badge uk-badge-primary">
-                <?php echo $value['status']; ?>
-            </span></td>
-            <td class="uk-text-center">
-                <a class="delete" action="<?php echo $value['department_id']; ?>">
-                    <i class="md-icon material-icons">delete</i>
-                </a>
-            </td>
-        </tr>
+                <td>
+                    <?php 
+                    //get department name
+                    echo $admin->get_department_name($value['name']); 
+                    ?>
+                        
+                    </td>
+                <td><?php echo $value['description']; ?></td>
+                <td><span class="uk-badge uk-badge-primary">
+                    <?php echo $value['status']; ?>
+                </span></td>
+                <td>
+                    <a class="delete" action="<?php echo $value['department_id']; ?>">
+                        <i class="md-icon material-icons">delete</i>
+                    </a>
+                </td>
+            </tr>
            <?php
          }
          ?>

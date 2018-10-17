@@ -5,10 +5,5 @@
 // $status="ACTIVATED";
 
 // var_dump($referral->ongoing_dates());
-$conn=mysqli_connect("localhost","api_access","Stuxnet7268","doctor");
-if($conn){
-	echo "Connected to Database";
-}else{
-	die(mysqli_error($conn));
-}
+echo date("Y-m-d h:i:sa");
 ?>

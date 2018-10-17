@@ -3,7 +3,16 @@ include_once 'Query.php';
 class HospitalAdmin extends Query{
 	##this class will contain actions that a hospital admin can do such as adding doctors,departments,nurses and receptions
 	############# HOSPITALADMIN GENERAL ACTION##################################
-
+	public function get_doctor_names($user_id){
+		global $con;
+		$query="SELECT names FROM doctors WHERE doctor_id=\"$user_id\" LIMIT 1";
+		$names="";
+		$result=$this->select($con,$query);
+		foreach ($result as $key => $value) {
+			$names=$value['names'];
+		}
+		return $names;
+	}
 	//function to delete different table user according to id field
 	public function deleteUser($table,$user_id,$field_name){
 		global $con;
@@ -94,7 +103,7 @@ class HospitalAdmin extends Query{
 	public function load_department($hos_id){
 		global $con;
 		$query="SELECT * FROM department 
-				WHERE hospital_id='$hos_id'
+				WHERE hospital_id=\"$hos_id\"
 				AND status!='DELETED' 
 				ORDER BY name ASC";
 		$result=array();
@@ -243,6 +252,15 @@ class HospitalAdmin extends Query{
 		return $result;
 	}
 
+	//get doctor from given hospital and Department
+	public function getDepartmentDoctors($hospital_id,$department_id){
+		global $con;
+		$query="SELECT * FROM doctors
+				WHERE hospital_id=\"$hospital_id\"
+				AND department=\"$department_id\"";
+		$result=$this->select($con,$query);
+		return $result;
+	}
 	############################### END OF DOCTOR SESSION ###################################
 
 	############################### NURSE SESSIONS #######################################

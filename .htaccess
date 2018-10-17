@@ -133,3 +133,8 @@ RewriteRule ^doctor_actions$ views/hospital/actions/doctor_actions.php [NC,L]
 
 #DELETE REFERRAL
 RewriteRule ^remove_referral$ referral/delete_referral.php [NC,L]
+
+#REFERRAL STATUS ACTIONS
+#GET DOCTORS BY DEPARTMENTS AND HOSPITAL
+RewriteRule ^get_doctors$ views/referrals/util/get_doctors.php [NC,L]
+RewriteRule ^export_excel$ views/referrals/util/export_excel.php [NC,L]

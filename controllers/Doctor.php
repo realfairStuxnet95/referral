@@ -48,7 +48,7 @@ class Doctor extends Query{
 	}
 	public function get_doctor_names($user_id){
 		global $con;
-		$query="SELECT names FROM doctors WHERE doctor_id='$user_id' LIMIT 1";
+		$query="SELECT names FROM doctors WHERE doctor_id=\"$user_id\" LIMIT 1";
 		$names="";
 		$result=$this->select($con,$query);
 		foreach ($result as $key => $value) {

@@ -14,35 +14,37 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $field_name='to_hospital_id';
         $option=$function->sanitize($data[1]);
         if($option=='PENDINGS'){
-            displayResult($referral,$function,$hospital_id,1,'PENDING');
+            displayResult($referral,$admin,$function,$hospital_id,1,'PENDING');
         }elseif($option=='SCHEDULED'){
-            displayResult($referral,$function,$hospital_id,1,$option);
+            displayResult($referral,$admin,$function,$hospital_id,1,$option);
         }elseif($option=='RECEIVED'){
-            displayResult($referral,$function,$hospital_id,1,$option);
+            displayResult($referral,$admin,$function,$hospital_id,1,$option);
         }
     }elseif($action=="search"){
         $input=$function->sanitize($data[1]);
-        displayResult($referral,$function,$hospital_id,2,$input);
+        displayResult($referral,$admin,$function,$hospital_id,2,$input);
     }
 }else{
     echo "500";
 }
 
-function displayResult($referral,$function,$hospital_id,$option,$input){
+function displayResult($referral,$admin,$function,$hospital_id,$option,$input){
     $referrals=$referral->search_incoming_ref($hospital_id,$option,$input);
     include 'util/incoming.php';
     if(count($referrals)>0){
         ?>
         <div class="md-card uk-margin-medium-bottom">
-            <table class="uk-table uk-text-nowrap" style="overflow-x: scroll;">
+            <a href="export_excel?action=referral&hospital=<?php echo $hospital_id ?>&status=SCHEDULED" name="Scheduled" class="uk-button uk-button-success" style="margin: 10px;" target="_blank">EXPORT CONTENT</a>
+            <table id="example" class="uk-table uk-text-nowrap" style="overflow: scroll;">
                 <thead style="background: #F5F5F5;">
                 <tr>
                     <th>#</th>
                     <th>Actions</th>
-                    <th>Date</th>
+                    <th>Issue Date</th>
                     <th>Patient Info</th>
                     <th>Referring Provider</th>
                     <th>Status</th>
+                    <th>Referral Info</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,51 +67,9 @@ function displayResult($referral,$function,$hospital_id,$option,$input){
                                 <a status="<?php echo $status; ?>" action="<?php echo $value['referral_id']; ?>" data-uk-modal="{target:'#modal_overflow'}" class="uk-button uk-button-primary updateStatus" data-uk-tooltip title="Update Referral Status">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <div id="modal_overflow" class="uk-modal">
-                                    <div class="uk-modal-dialog">
-                                        <button type="button" class="uk-modal-close uk-close"></button>
-                                        <h2 class="statusId">Update Referral status</h2>
-                                        <p id="referral_id">Please change the referral status if it has been sent or received</p>
-                                        <div class="uk-width-1-1" style="margin: 10px;">
-                                            <span class="uk-form-help-block">Select referral status to update to </span>
-                                            <select id="status_to_update" class="md-input">
-                                                <option value="">Select Status</option>
-                                                <?php 
-                                                if($status=="PENDING"){
-                                                    ?>
-
-                                                    <option value="SCHEDULED">SCHEDULED</option>
-                                                    <option value="RECEIVED">RECEIVED</option>
-                                                    <?php
-                                                }elseif($status=="SCHEDULED"){
-                                                    ?>
-                                                    <option value="PENDING">PENDING</option>
-                                                    <option value="RECEIVED">RECEIVED</option>
-                                                    <?php
-                                                }elseif($status=="RECEIVED"){
-                                                    ?>
-                                                    <option value="PENDING">PENDING</option>
-                                                    <option value="SCHEDULED">SCHEDULED</option>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select>
-                                            <input type="hidden" id="action" name="action" value="<?php echo $value['referral_id']; ?>">
-                                        </div>
-                                        <div id="div_schedule" class="uk-width-1-1" style="margin: 10px;display: none;">
-                                            <div class="uk-input-group">
-                                                <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
-                                                <label for="uk_dp_1">Select scheduled  date</label>
-                                                <input class="md-input" type="text" id="uk_dp_1" data-uk-datepicker="{format:'DD.MM.YYYY'}">
-                                            </div>
-                                        </div>
-                                        <div class="uk-width-1-1" style="margin:10px;">
-                                            <button id="btn_update_status" class="md-btn md-btn-success md-btn-wave-light">
-                                                UPDATE REFERRAL STATUS
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
+                                <?php 
+                                include 'util/modal.php';
+                                ?>
                                 <?php
                             }elseif($status=="SENDING"){
                               ?>
@@ -194,6 +154,26 @@ function displayResult($referral,$function,$hospital_id,$option,$input){
                                 ?>
                             </a>
                         </td>
+                        <td>
+                            <?php 
+                            if($value['status']=="SCHEDULED"){
+                                $info=$referral->get_scheduledReferral_info($value['referral_id']);
+                                if(count($info)>0){
+                                    foreach ($info as $key => $i) {
+                                        ?>
+                                        <span class="uk-badge uk-badge-primary">
+                                            <?php 
+                                            echo 'Scheduled Date: <b>'.$i['date_time'].'</b>';
+                                            echo '<br>Scheduled Department: <b>'.$admin->get_department_name($i['receive_department']).'</b>';
+                                            echo '<br>Scheduled Doctor: <b>'.$admin->get_doctor_names($i['receive_doctor']).'</b>';
+                                            ?>
+                                        </span>
+                                        <?php
+                                    }
+                                }
+                            }elseif($value[''])
+                            ?>
+                        </td>
                     </tr> 
                     
                     <?php
@@ -208,6 +188,7 @@ function displayResult($referral,$function,$hospital_id,$option,$input){
     }
 }
 ?>
+
 <script src="assets/js/actions/ajax_modals.js"></script>
 <script src="scripts/referral/incoming.js"></script>
 <script src="assets/js/actions/ref.js"></script>

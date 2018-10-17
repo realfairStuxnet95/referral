@@ -1,9 +1,5 @@
 <!doctype html>
-<!--[if lte IE 9]> <html class="lte-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
-
-
-<!-- Mirrored from altair_html.tzdthemes.com/page_user_profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Feb 2018 11:14:39 GMT -->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">

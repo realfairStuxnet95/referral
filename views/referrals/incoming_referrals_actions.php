@@ -1,35 +1,36 @@
 <?php 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	require_once '../../auth.php';
-	require_once '../../includes/database.inc.php';
-	include_once '../../includes/Functions.php';
-	include_once '../../controllers/HospitalAdmin.php';
-	include_once '../../controllers/Referral.inc.php';
-	include_once '../../controllers/Doctor.php';
-
+	require_once '../../module_loader.php';
 	$data=$_POST['info'];
-	$options=0;
-	$referral_id=0;
 	if(is_array($data)){
+
 		$action=$function->sanitize($data[0]);
-		$referral_id=$function->sanitize($data[1]);
-		if(strlen($action)>0 && strlen($referral_id)>0){
-			if($action=="PENDING"){
-				$options=3;
-			}elseif($action=="SCHEDULED"){
-				$options=2;
-			}elseif ($action=="RECEIVED") {
-				$options=1;
-			}
-			$action_status=$referral->referral_actions($options,$referral_id);
-			if($action_status){
-				echo "1";
-			}else{
-				die(mysqli_error($con));
-			}
+		$referral_id=(int)$function->sanitize($data[1]);
+
+		if($action=="PENDING"){
+			$status=$referral->referral_actions(2,$referral_id);
+
+		}elseif($action=="RECEIVED"){
+			$status=$referral->referral_actions(1,$referral_id);
+			
+		}elseif($action=="SCHEDULED"){
+			//grab inputs
+			$date_field=$function->sanitize($data[2]);
+			$time_field=$function->sanitize($data[3]);
+			$department=$function->sanitize($data[4]);
+			$doctor=$function->sanitize($data[5]);
+			$receive_hospital=$function->sanitize($data[6]);
+
+			$status=$referral->scheduleReferral($referral_id,$receive_hospital,$date_field,$time_field,$department,$doctor);
 		}else{
-			echo "Please submit an action";
+			$status=false;
 		}
+		if($status){
+			echo "1";
+		}else{
+			echo "0";
+		}
+
 	}else{
 		echo "Please submit an array";
 	}
