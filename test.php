@@ -1,9 +1,6 @@
 <?php
-// include 'class_loader.php';
-// $option="change_status";
-// $action="9";
-// $status="ACTIVATED";
+include 'class_loader.php';
 
-// var_dump($referral->ongoing_dates());
-echo date("Y-m-d h:i:sa");
+$r=$referral->search_incoming_ref(11,3,'');
+var_dump($r);
 ?>

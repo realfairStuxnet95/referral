@@ -507,9 +507,24 @@ class Referral extends Query{
 			$query.=" AND status=\"$input\"";
 		}elseif($option==2){
 			$query.=" AND referral_id=\"$input\"";
+		}elseif($option==3){
+			$query="SELECT referrals.* FROM scheduled_referrals
+				INNER JOIN referrals ON scheduled_referrals.referral_id=referrals.referral_id AND scheduled_referrals.receive_doctor=\"$hospital_id\"";
 		}
-		$query.="AND status!='DELETED' ORDER BY referral_id DESC";
+		if($option!=3){
+			$query.="AND status!='DELETED' ORDER BY referral_id DESC";
+		}else{
+			$query.=" AND referrals.status!='DELETED' ORDER BY referrals.referral_id DESC";
+		}
+		
 		//return $query;
+		return $this->select($con,$query);
+	}
+	public function doctor_scheduled_ref($doctor_id){
+		global $con;
+		$query="SELECT scheduled_referrals.*,referrals.* FROM scheduled_referrals
+				INNER JOIN referrals ON  scheduled_referrals.referral_id=referrals.referral_id
+				AND scheduled_referrals.receive_doctor=\"$doctor_id\"";
 		return $this->select($con,$query);
 	}
 	public function get_system_referrals($option,$status,$hospital_id,$sent_date){

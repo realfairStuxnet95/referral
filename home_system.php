@@ -138,6 +138,9 @@ require 'auth.php';
                         case 'counter_referrals':
                             include 'views/doctor/tabbed_counter_referrals.php';
                             break;
+                        default:
+                            include 'views/doctor/referrals.php';
+                            break;
                         }
                     }
                 }
@@ -714,5 +717,8 @@ require 'auth.php';
     </script>
     <script src="assets/js/loader/post_loader.js"></script>
     <script src="assets/js/actions/index.js"></script>
+    <script type="text/javascript">
+        const current_user="<?php echo $_SESSION['user_id']; ?>";
+    </script>
 </body>
 </html>

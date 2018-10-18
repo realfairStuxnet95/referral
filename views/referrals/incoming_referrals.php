@@ -19,6 +19,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             displayResult($referral,$admin,$function,$hospital_id,1,$option);
         }elseif($option=='RECEIVED'){
             displayResult($referral,$admin,$function,$hospital_id,1,$option);
+        }elseif($option=='ASSIGNED'){
+            $doctor_id=$function->sanitize($data[2]);
+            displayResult($referral,$admin,$function,$doctor_id,3,$option);
         }
     }elseif($action=="search"){
         $input=$function->sanitize($data[1]);
