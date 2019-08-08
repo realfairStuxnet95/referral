@@ -9,7 +9,7 @@ $(function(){
 	   alert("Invalid Image File");
 	  }else{
 	  var reader = new FileReader();
-    reader.onload = function(){
+      reader.onload = function(){
       var dataURL = reader.result;
       var output = document.getElementById('profile');
       output.src = dataURL;
@@ -60,6 +60,7 @@ function hideLoader(){
   $("#btnFinish").show();
   $("#loader").hide(); 
 }
+
 function ValidateEmail(mail) 
 {
  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))

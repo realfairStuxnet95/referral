@@ -1,7 +1,7 @@
 <?php
 $server="localhost";
-$user="api_access";
-$password="Stuxnet7268";
+$user="root";
+$password="";
 $database="doctor";
 $con=mysqli_connect($server,$user,$password);
 if($con){
